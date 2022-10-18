@@ -27,12 +27,15 @@ app.get("/", function(req,res){
 })
 
 app.post('/create-data', function (req, res) {
-  db.collection('users').insertOne({ username: req.body.username, password: req.body.password }, function (
-    err,
-    info
-  ) {
-    res.json(info.ops[0])
-  })
+  db.collection('users').insertOne({ username: req.body.username, password: req.body.password }, function (err, info) {
+    if (err){
+        console.error(err)
+    } else if (info.acknowledged === true) {
+        res.json(info)
+    } else{
+        console.log("error")
+    }
+    })
 })
 
 app.get('/items', function (req, res) {
