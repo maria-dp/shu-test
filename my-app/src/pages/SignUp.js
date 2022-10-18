@@ -1,6 +1,6 @@
 
 import React, {useState} from "react"
-import { useNavigate } from "react-router"
+//import { useNavigate } from "react-router-dom"
 
 function SignUp (){
     
@@ -8,7 +8,7 @@ function SignUp (){
         username: "",
         password: ""
     })
-    const navigate = useNavigate
+    //const navigate = useNavigate
 
     function updateUser(value){
         return setUser((prev) => {
@@ -35,9 +35,7 @@ function SignUp (){
             return
         })
         setUser({ username: "", password: ""})
-        navigate("/")
-
-        return
+       // navigate('/')
     }
 
     return (
