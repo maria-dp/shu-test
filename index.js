@@ -34,7 +34,7 @@ app.get("/", function(req,res){
 })
 
 //recordRoutes.route('/create-data').post( function (req, res) {
-app.post('/create-data', function (req, res) {
+app.post('/register', function (req, res) {
   db.collection('users').insertOne({ username: req.body.username, password: req.body.password }, function (err, info) {
     if (err){
         console.error(err)

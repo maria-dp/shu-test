@@ -22,7 +22,7 @@ function SignUp (){
 
         const newUser ={ ...user}
 
-        await fetch("http://localhost:5000/create-data", {
+        await fetch("http://localhost:5000/register", {
             method: "POST",
             mode:"cors",
             headers: {
