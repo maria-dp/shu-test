@@ -2,7 +2,10 @@ const express = require('express')
 const mongodb = require('mongodb').MongoClient
 const app = express()
 const port = 5000
+const cors = require("cors")
 //const bodyParser = require("body-parser")
+//const recordRoutes = express.Router()
+
 let db
 
 let connectionString = `mongodb://localhost:27017/data`
@@ -20,12 +23,17 @@ app.listen(port,() => console.log(`Listening on port ${port}`))
 
 app.use(express.json())
 
+app.use(cors({
+  origin: "http://localhost:3000"
+}))
+
 //app.use(bodyParser.json())
 
 app.get("/", function(req,res){
     res.send("hi")
 })
 
+//recordRoutes.route('/create-data').post( function (req, res) {
 app.post('/create-data', function (req, res) {
   db.collection('users').insertOne({ username: req.body.username, password: req.body.password }, function (err, info) {
     if (err){
