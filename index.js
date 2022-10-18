@@ -3,7 +3,7 @@ const mongodb = require('mongodb').MongoClient
 const app = express()
 const port = 5000
 const cors = require("cors")
-//const bodyParser = require("body-parser")
+const bodyParser = require("body-parser")
 //const recordRoutes = express.Router()
 
 let db
@@ -27,7 +27,7 @@ app.use(cors({
   origin: "http://localhost:3000"
 }))
 
-//app.use(bodyParser.json())
+app.use(bodyParser.json())
 
 app.get("/", function(req,res){
     res.send("hi")
@@ -75,3 +75,5 @@ app.delete('/delete-data', function (req, res) {
     }
   )
 })
+
+//module.exports = recordRoutes

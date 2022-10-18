@@ -35,7 +35,7 @@ function SignUp (){
             return
         })
         setUser({ username: "", password: ""})
-        navigate("/create-data")
+        navigate("/")
 
         return
     }
