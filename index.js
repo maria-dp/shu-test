@@ -10,6 +10,8 @@ let db
 
 let connectionString = `mongodb://localhost:27017/data`
 
+const ObjectId = require("mongodb").ObjectId
+
 mongodb.connect(
   connectionString,
   { useNewUrlParser: true, useUnifiedTopology: true },
@@ -46,6 +48,26 @@ app.post('/register', function (req, res) {
     })
 })
 
+app.post('/add-event', function (req, res) {
+  db.collection('events').insertOne({
+    title: req.body.title, 
+    categories: req.body.categories, 
+    provider: req.body.provider, 
+    time: req.body.time, 
+    duration: req.body.duration, 
+    price: req.body.time,
+    description:req.body.description
+    }, function (err, info) {
+    if (err){
+        console.error(err)
+    } else if (info.acknowledged === true) {
+        res.json(info)
+    } else{
+        console.log("error")
+    }
+    })
+})
+
 app.get('/items', function (req, res) {
   // getting all the data
   db.collection('users')
@@ -66,7 +88,7 @@ app.put('/update-data', function (req, res) {
   )
 })
 
-app.delete('/delete-data', function (req, res) {
+app.delete('/delete-user', function (req, res) {
   // deleting a data by it's ID
   db.collection('users').deleteOne(
     { _id: new mongodb.ObjectId(req.body.id) },
